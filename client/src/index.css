@@ -1,0 +1,240 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+
+  /* Solar System Colors */
+  --sun-color: hsl(45, 100%, 50%);
+  --mercury-color: hsl(0, 0%, 60%);
+  --venus-color: hsl(45, 100%, 60%);
+  --earth-color: hsl(220, 100%, 50%);
+  --mars-color: hsl(15, 100%, 50%);
+  --jupiter-color: hsl(30, 60%, 45%);
+  --saturn-color: hsl(270, 60%, 60%);
+  --uranus-color: hsl(180, 60%, 60%);
+  --neptune-color: hsl(240, 100%, 30%);
+  --pluto-color: hsl(0, 0%, 70%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-inter antialiased bg-background text-foreground;
+    background: linear-gradient(to bottom right, hsl(240, 10%, 3.9%), hsl(0, 0%, 0%), hsl(240, 10%, 3.9%));
+    min-height: 100vh;
+  }
+
+  .font-orbitron {
+    font-family: 'Orbitron', monospace;
+  }
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+@layer components {
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle 3s ease-in-out infinite alternate;
+  }
+
+  .orbit-ring {
+    position: absolute;
+    border: 1px solid hsl(0, 0%, 100%, 0.1);
+    border-radius: 50%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  .project-card {
+    background: hsl(0, 0%, 100%, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(0, 0%, 100%, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover {
+    background: hsl(0, 0%, 100%, 0.1);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px hsl(207, 90%, 54%, 0.3);
+  }
+
+  .skill-bar {
+    height: 4px;
+    background: linear-gradient(90deg, hsl(207, 90%, 54%), hsl(220, 100%, 70%));
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .contact-form {
+    background: hsl(0, 0%, 100%, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(0, 0%, 100%, 0.1);
+  }
+
+  .form-input {
+    background: hsl(0, 0%, 100%, 0.1);
+    border: 1px solid hsl(0, 0%, 100%, 0.2);
+    color: white;
+    transition: all 0.3s ease;
+  }
+
+  .form-input:focus {
+    background: hsl(0, 0%, 100%, 0.15);
+    border-color: hsl(207, 90%, 54%);
+    box-shadow: 0 0 0 3px hsl(207, 90%, 54%, 0.2);
+  }
+
+  .form-input::placeholder {
+    color: hsl(0, 0%, 100%, 0.6);
+  }
+
+  .nav-link {
+    transition: all 0.3s ease;
+  }
+
+  .nav-link:hover {
+    color: hsl(207, 90%, 54%);
+    text-shadow: 0 0 10px hsl(207, 90%, 54%, 0.5);
+  }
+
+  .hero-text {
+    text-shadow: 0 0 20px hsl(0, 0%, 100%, 0.3);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: hsl(0, 0%, 100%, 0.7);
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .sun-glow {
+    box-shadow: 0 0 20px hsl(45, 100%, 50%, 0.5), 0 0 40px hsl(45, 100%, 50%, 0.3), 0 0 60px hsl(30, 100%, 50%, 0.2);
+  }
+
+  .planet-glow {
+    box-shadow: 0 0 10px currentColor;
+  }
+}
+
+@layer utilities {
+  @keyframes orbit {
+    0% {
+      transform: rotate(0deg) translateX(var(--orbit-radius)) rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg) translateX(var(--orbit-radius)) rotate(-360deg);
+    }
+  }
+
+  @keyframes twinkle {
+    0% {
+      opacity: 0.3;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0% {
+      box-shadow: 0 0 20px hsl(45, 100%, 50%, 0.5);
+    }
+    100% {
+      box-shadow: 0 0 40px hsl(45, 100%, 50%, 0.8), 0 0 60px hsl(30, 100%, 50%, 0.6);
+    }
+  }
+
+  .animate-orbit-mercury {
+    animation: orbit 8s linear infinite;
+  }
+
+  .animate-orbit-venus {
+    animation: orbit 12s linear infinite;
+  }
+
+  .animate-orbit-earth {
+    animation: orbit 16s linear infinite;
+  }
+
+  .animate-orbit-mars {
+    animation: orbit 24s linear infinite;
+  }
+
+  .animate-orbit-jupiter {
+    animation: orbit 32s linear infinite;
+  }
+
+  .animate-orbit-saturn {
+    animation: orbit 48s linear infinite;
+  }
+
+  .animate-orbit-uranus {
+    animation: orbit 64s linear infinite;
+  }
+
+  .animate-orbit-neptune {
+    animation: orbit 80s linear infinite;
+  }
+
+  .animate-orbit-pluto {
+    animation: orbit 96s linear infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+
+  .animate-twinkle {
+    animation: twinkle 3s ease-in-out infinite alternate;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
