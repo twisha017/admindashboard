@@ -63,10 +63,11 @@ Preferred communication style: Simple, everyday language.
 5. Success/error feedback displayed via toast notifications
 
 ### Data Storage
-- **Development**: In-memory storage implementation
-- **Production**: PostgreSQL database with Drizzle ORM
+- **Database**: PostgreSQL database with Drizzle ORM (active)
+- **Connection**: Neon Database serverless PostgreSQL
 - **Schema**: Shared TypeScript types between frontend and backend
 - **Validation**: Zod schemas for runtime type checking
+- **Storage Layer**: DatabaseStorage class implementing IStorage interface
 
 ## External Dependencies
 
